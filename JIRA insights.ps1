@@ -33,44 +33,32 @@ function Build-Prompt {
     )
 
     # Russian versions
-    $ruFull = @"
-Посмотри задачу JIRA номер $TaskId, изучи описание описание, комментарии и остальные поля.
-Если в задаче есть привязанные Confluence статьи или есть ссылки на статьи в текстовых полях, посмотри их содержимое. Если прямых ссылок на статьи нет, искать их в Confluence по тексту не нужно.
-Если в описании или в комментариях есть ссылки на Slack, прочитай переписки.
-Поищи изменения в Gitlab ТОЛЬКО по номеру задачи.
-Если у задачи есть Epic (доступен через поле parent), то проведи аналогичный анализ эпика.
-Если у задачи есть прилинкованные задачи, проведи аналогичный анализ этих задач, учитывая тип связи.
-В результате я хочу получить информацию по задаче: В чём суть задачи? Решение найдено? Какое сейчас состояние?
-Не выводи значения стандартных полей задачи. Используй html форматирование для ответа, используя шрифты некрупного размера и с минимальным пустым местом между строками.
-"@
+    $ruPrompt1 = "Посмотри задачу JIRA номер $TaskId, изучи описание описание, комментарии и остальные поля."
+    $ruPrompt2 = "Если в задаче есть привязанные Confluence статьи или есть ссылки на статьи в текстовых полях, посмотри их содержимое."
+    $ruPrompt3 = "Если прямых ссылок на статьи нет, искать их в Confluence по тексту не нужно."
+    $ruPrompt4 = "Если в описании или в комментариях есть ссылки на Slack, прочитай переписки."
+    $ruPrompt5 = "Поищи изменения в Gitlab ТОЛЬКО по номеру задачи."
+    $ruPrompt6 = "Если у задачи есть Epic (доступен через поле parent), то проведи аналогичный анализ эпика."
+    $ruPrompt7 = "Если у задачи есть прилинкованные задачи, проведи аналогичный анализ этих задач, учитывая тип связи."
+    $ruPrompt8 = "В результате я хочу получить информацию по задаче: В чём суть задачи? Решение найдено? Какое сейчас состояние?"
+    $ruPrompt9 = "Не выводи значения стандартных полей задачи. Используй html форматирование для ответа, используя шрифты некрупного размера и с минимальным пустым местом между строками."
 
-    $ruShort = @"
-Посмотри задачу JIRA номер $TaskId, изучи описание описание, комментарии и остальные поля.
-Если у задачи есть Epic (доступен через поле parent), то проведи аналогичный анализ эпика.
-Если у задачи есть прилинкованные задачи, проведи аналогичный анализ этих задач, учитывая тип связи.
-В результате я хочу получить информацию по задаче: В чём суть задачи? Решение найдено? Какое сейчас состояние?
-Не выводи значения стандартных полей задачи. Используй html форматирование для ответа, используя шрифты некрупного размера и с минимальным пустым местом между строками.
-"@
+    $ruFull = "$ruPrompt1 $ruPrompt2 $ruPrompt3 $ruPrompt4 $ruPrompt5 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9"
+    $ruShort = "$ruPrompt1 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9"
 
     # English versions
-    $enFull = @"
-Look at JIRA task number $TaskId, read the description, comments and other fields.
-If the task has linked Confluence articles or there are links to articles in text fields, check their content. If there are no direct links, don't search for them in Confluence.
-If there are Slack links in the description or comments, read the conversations.
-Search for GitLab changes by task number ONLY.
-If the task has an Epic (available through the parent field), perform similar analysis of the epic.
-If the task has linked tasks, perform similar analysis of these tasks, considering the link type.
-As a result, I want to get information about the task: What is the essence of the task? Was a solution found? What is the current state?
-Do not display standard task field values. Use HTML formatting of the answer using small fonts and minimal empty space between lines.
-"@
+    $enPrompt1 = "Look at JIRA task number $TaskId, read the description, comments and other fields."
+    $enPrompt2 = "If the task has linked Confluence articles or there are links to articles in text fields, check their content."
+    $enPrompt3 = "If there are no direct links, don't search for them in Confluence."
+    $enPrompt4 = "If there are Slack links in the description or comments, read the conversations."
+    $enPrompt5 = "Search for GitLab changes by task number ONLY."
+    $enPrompt6 = "If the task has an Epic (available through the parent field), perform similar analysis of the epic."
+    $enPrompt7 = "If the task has linked tasks, perform similar analysis of these tasks, considering the link type."
+    $enPrompt8 = "As a result, I want to get information about the task: What is the essence of the task? Was a solution found? What is the current state?"
+    $enPrompt9 = "Do not display standard task field values. Use HTML formatting of the answer using small fonts and minimal empty space between lines."
 
-    $enShort = @"
-Look at JIRA task number $TaskId, read the description, comments and other fields.
-If the task has an Epic (available through the parent field), perform similar analysis of the epic.
-If the task has linked tasks, perform similar analysis of these tasks, considering the link type.
-As a result, I want to get information about the task: What is the essence of the task? Was a solution found? What is the current state?
-Do not display standard task field values. Use HTML formatting of the answer using small fonts and minimal empty space between lines.
-"@
+    $enFull = "$enPrompt1 $enPrompt2 $enPrompt3 $enPrompt4 $enPrompt5 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9"
+    $enShort = "$enPrompt1 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9"
 
     switch ($Lang) {
         'ru' { if ($Full -eq 'true') { $ruFull } else { $ruShort } }
