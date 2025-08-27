@@ -22,7 +22,7 @@ param([int]$Port = 7900)          # HTTP port (change with -Port)
 
 # Path or just name of the console client (must be in %PATH% or full path here)
 $ClaudeExe  = 'C:\Users\AlexeyIsakov\AppData\Roaming\npm\claude.cmd'
-$FixedArgs  = @('--print', '--dangerously-skip-permissions')   # CLI flags that never change
+$FixedArgs  = @('--print', '--dangerously-skip-permissions', '--model', 'claude-sonnet-4')   # CLI flags that never change
 
 # ---------- build final prompt for Claude ----------
 function Build-Prompt {
