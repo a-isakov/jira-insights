@@ -22,7 +22,7 @@ param([int]$Port = 7900)          # HTTP port (change with -Port)
 
 # Path or just name of the console client (must be in %PATH% or full path here)
 $ClaudeExe  = 'C:\Users\AlexeyIsakov\AppData\Roaming\npm\claude.cmd'
-$FixedArgs  = @('--print', '--dangerously-skip-permissions', '--model', 'claude-sonnet-4')   # CLI flags that never change
+$FixedArgs  = @('--print', '--dangerously-skip-permissions', '--model', 'claude-sonnet-4-5')   # CLI flags that never change
 
 # ---------- build final prompt for Claude ----------
 function Build-Prompt {
@@ -42,9 +42,10 @@ function Build-Prompt {
     $ruPrompt7 = "Если у задачи есть прилинкованные задачи, проведи аналогичный анализ этих задач, учитывая тип связи."
     $ruPrompt8 = "В результате я хочу получить информацию по задаче: В чём суть задачи? Решение найдено? Какое сейчас состояние?"
     $ruPrompt9 = "Не выводи значения стандартных полей задачи. Используй html форматирование для ответа, используя шрифты некрупного размера и с минимальным пустым местом между строками."
+    $ruPrompt10 = "Ответ должен быть на русском языке."
 
-    $ruFull = "$ruPrompt1 $ruPrompt2 $ruPrompt3 $ruPrompt4 $ruPrompt5 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9"
-    $ruShort = "$ruPrompt1 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9"
+    $ruFull = "$ruPrompt1 $ruPrompt2 $ruPrompt3 $ruPrompt4 $ruPrompt5 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9 $ruPrompt10"
+    $ruShort = "$ruPrompt1 $ruPrompt6 $ruPrompt7 $ruPrompt8 $ruPrompt9 $ruPrompt10"
 
     # English versions
     $enPrompt1 = "Look at JIRA task number $TaskId, read the description, comments and other fields."
@@ -56,9 +57,10 @@ function Build-Prompt {
     $enPrompt7 = "If the task has linked tasks, perform similar analysis of these tasks, considering the link type."
     $enPrompt8 = "As a result, I want to get information about the task: What is the essence of the task? Was a solution found? What is the current state?"
     $enPrompt9 = "Do not display standard task field values. Use HTML formatting of the answer using small fonts and minimal empty space between lines."
+    $enPrompt10 = "Answer in English."
 
-    $enFull = "$enPrompt1 $enPrompt2 $enPrompt3 $enPrompt4 $enPrompt5 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9"
-    $enShort = "$enPrompt1 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9"
+    $enFull = "$enPrompt1 $enPrompt2 $enPrompt3 $enPrompt4 $enPrompt5 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9 $enPrompt10"
+    $enShort = "$enPrompt1 $enPrompt6 $enPrompt7 $enPrompt8 $enPrompt9 $enPrompt10"
 
     switch ($Lang) {
         'ru' { if ($Full -eq 'true') { $ruFull } else { $ruShort } }
